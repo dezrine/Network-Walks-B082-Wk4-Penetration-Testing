@@ -1,0 +1,52 @@
+## Project Analysis
+This project documents a black-box penetration test conducted against the **Mediroza General Hospital** web application as part of the Network Walks Week 4 cybersecurity lab (Batch B082).
+
+The assessment simulated an authorized penetration test focused on identifying weaknesses that could lead to unauthorized access to confidential patient information and critical organizational data.
+
+### Key Activities
+
+- Conducted web reconnaissance and enumeration against the target application.
+- Identified and retrieved three confidential patient laboratory reports.
+- Analyzed and cracked weak/predictable PDF passwords using dictionary-based techniques.
+- Successfully decrypted protected PDF reports.
+- Performed PDF metadata analysis using `exiftool`.
+- Identified an internal author reference and a comment revealing the location of a database backup.
+- Discovered a publicly accessible `/old/` directory with directory listing enabled.
+- Retrieved the exposed `mediroza_db_backup_2019.sql` database backup.
+- Analyzed the database and identified sensitive employee salary information.
+- Identified shareholder names, ownership percentages, and share classes.
+- Correlated the PDF metadata with the staff database to reconstruct the complete attack chain.
+- Documented findings, evidence, risks, and remediation recommendations.
+
+### Major Findings
+
+| Finding | Severity |
+|---|---|
+| Unauthorized exposure of confidential patient reports | 🔴 Critical |
+| Weak/predictable PDF password protection | 🟠 High |
+| Sensitive information disclosed through PDF metadata | 🟠 High |
+| Publicly accessible database backup | 🔴 Critical |
+| Exposure of employee salary and shareholder information | 🔴 Critical |
+
+### Attack Chain
+
+```text
+Web Application
+      ↓
+Confidential Patient Reports
+      ↓
+Weak PDF Password Protection
+      ↓
+PDF Decryption
+      ↓
+Metadata Analysis
+      ↓
+Internal Backup Location Discovered
+      ↓
+/old/ Directory Listing
+      ↓
+Database Backup Download
+      ↓
+Staff & Shareholder Data Exposure
+      ↓
+Complete Attack Chain Correlation
